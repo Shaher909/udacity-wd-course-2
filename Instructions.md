@@ -8,16 +8,49 @@ You will be building a multi-section landing page
 
 ## Questions to think about
 
-What’s the ideal workflow?
-How many files do I need?
-Do I modify the HTML first or the CSS?
-How many JavaScript functions do I need?
+What’s the ideal workflow? build menu -> activ scroll -> set as active
+How many files do I need? 1
+Do I modify the HTML first or the CSS? HTML first
+How many JavaScript functions do I need? 3 functions (build navigation, set active section, scroll)
 Should my function be this many lines of code?
 Is readability or performance more important?
 
 ## Approach
 
 - Break your project down into small pieces of work and strategize your approach to each one. With these bite-sized amounts, it'll be easier to debug and fix any issues that appear.
+
+Step 1 - define the menu markup
+The Markup is as follow (`li` elements needs to be populated via JS):
+
+```
+<header class="page__header">
+    <nav class="navbar__menu">
+        <ul id="navbar__list">
+            <li><a class="menu__link">test</a></li>
+            <li><a class="menu__link">test</a></li>
+        </ul>
+    </nav>
+</header>
+```
+
+Step 2 - create helper functions
+
+- Go through the sections and store them into an array
+
+Step 3 - create a function to build the navigation menu
+
+- Create the markup based on the array
+
+Step 4 - create a function to scroll to the section
+
+- Add event listerer to the menu links (click) and call the scroll function
+
+Step 5 - highlight the active section
+Layout already available:
+
+```
+your-active-class
+```
 
 ### Steps:
 
