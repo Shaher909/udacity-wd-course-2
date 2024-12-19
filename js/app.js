@@ -23,7 +23,7 @@
  *
  */
 
-const navigationItems = [];
+const sections = [];
 
 /**
  * End Global Variables
@@ -33,8 +33,27 @@ const navigationItems = [];
 
 function getSections() {
   const sectionsNodeList = document.querySelectorAll("section");
-  navigationItems.push(...sectionsNodeList);
-  console.log(navigationItems);
+  sections.push(...sectionsNodeList);
+}
+
+function respondToSectionClick(event) {
+  event.preventDefault();
+  const sectionId = event.target.getAttribute("href").substring(1);
+  const section = document.getElementById(sectionId);
+  section.scrollIntoView({ behavior: "smooth" });
+}
+
+function makeActive() {
+  for (const section of sections) {
+    const box = section.getBoundingClientRect();
+    //Find a value that works best, but 150 seems to be a good start.
+    if (box.top <= 250 && box.bottom >= 700) {
+      section.classList.add("your-active-class");
+    } else {
+      //Remove active state from other section and corresponding Nav link
+      section.classList.remove("your-active-class");
+    }
+  }
 }
 
 /**
@@ -44,7 +63,7 @@ function getSections() {
  */
 
 // build the nav
-function buildNavigationMenu(menuItems) {
+function buildNavigationMenu(sections) {
   // Get the navigation bar element based on its ID
   const navBar = document.getElementById("navbar__list");
 
@@ -52,13 +71,13 @@ function buildNavigationMenu(menuItems) {
   const menuItemsFragment = document.createDocumentFragment();
 
   // Loop through the menu items and create a list item and link for each one
-  for (const item of menuItems) {
+  for (const section of sections) {
     const newListItem = document.createElement("li");
     const newListItemLink = document.createElement("a");
 
     // Set the href attribute of the link to the ID of the section and its text
-    newListItemLink.href = `#${item.id}`;
-    newListItemLink.textContent = item.getAttribute("data-nav");
+    newListItemLink.href = `#${section.id}`;
+    newListItemLink.textContent = section.getAttribute("data-nav");
 
     // Append the link to the list item and the list item to the document fragment
     newListItem.appendChild(newListItemLink);
@@ -70,10 +89,15 @@ function buildNavigationMenu(menuItems) {
 }
 
 // Add class 'active' to section when near top of viewport
-function setActiveSection() {}
+function setActiveSection() {
+  document.addEventListener("scroll", makeActive);
+}
 
 // Scroll to anchor ID using scrollTO event
-function scrollToSection() {}
+function scrollToSection() {
+  const navBar = document.getElementById("navbar__list");
+  navBar.addEventListener("click", respondToSectionClick);
+}
 
 /**
  * End Main Functions
@@ -83,7 +107,9 @@ function scrollToSection() {}
 
 // Build menu
 getSections();
-buildNavigationMenu(navigationItems);
+buildNavigationMenu(sections);
+scrollToSection();
+setActiveSection();
 
 // Scroll to section on link click
 

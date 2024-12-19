@@ -35,15 +35,16 @@ The Markup is as follow (`li` elements needs to be populated via JS):
 
 Step 2 - create helper functions
 
-- Go through the sections and store them into an array
+- Go through the sections and store them into an array - OK
+- Scroll to section based on clikc - OK
 
-Step 3 - create a function to build the navigation menu
+Step 3 - create a function to build the navigation menu - OK
 
-- Create the markup based on the array
+- Create the markup based on the array - OK
 
-Step 4 - create a function to scroll to the section
+Step 4 - create a function to scroll to the section - OK
 
-- Add event listerer to the menu links (click) and call the scroll function
+- Add event listerer to the menu links (click) and call the scroll function - OK
 
 Step 5 - highlight the active section
 Layout already available:
