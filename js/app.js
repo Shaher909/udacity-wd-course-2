@@ -31,11 +31,13 @@ const sections = [];
  *
  */
 
+// Get all the sections and store them in the sections array
 function getSections() {
   const sectionsNodeList = document.querySelectorAll("section");
   sections.push(...sectionsNodeList);
 }
 
+// Scroll to the section when the corresponding link is clicked
 function respondToSectionClick(event) {
   event.preventDefault();
   const sectionId = event.target.getAttribute("href").substring(1);
@@ -43,6 +45,7 @@ function respondToSectionClick(event) {
   section.scrollIntoView({ behavior: "smooth" });
 }
 
+// Add an active state to the section when it is in the viewport
 function makeActive() {
   for (const section of sections) {
     const box = section.getBoundingClientRect();
@@ -90,11 +93,13 @@ function buildNavigationMenu(sections) {
 
 // Add class 'active' to section when near top of viewport
 function setActiveSection() {
+  //listenning to the scrolling event on the document
   document.addEventListener("scroll", makeActive);
 }
 
 // Scroll to anchor ID using scrollTO event
 function scrollToSection() {
+  // Get the navigation bar element based on its ID and use JS event deleggatio concept to listen to its child links
   const navBar = document.getElementById("navbar__list");
   navBar.addEventListener("click", respondToSectionClick);
 }
@@ -105,12 +110,12 @@ function scrollToSection() {
  *
  */
 
-// Build menu
 getSections();
+// Build menu
 buildNavigationMenu(sections);
-scrollToSection();
-setActiveSection();
 
 // Scroll to section on link click
+scrollToSection();
 
 // Set sections as active
+setActiveSection();
