@@ -104,6 +104,25 @@ function scrollToSection() {
   navBar.addEventListener("click", respondToSectionClick);
 }
 
+// Hide navbar when not scrolling
+function hideNavBartWhenNotScrolling() {
+  let timeoutId;
+  const navBar = document.querySelector(".navbar__menu");
+  document.addEventListener("scroll", () => {
+    navBar.style.display = "block";
+
+    // To avoid having multiple setTimeouts running at the same time, we clear the previous one
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+
+    // Set a timeout to hide the navbar after 4 seconds
+    timeoutId = setTimeout(() => {
+      navBar.style.display = "none";
+    }, 4000);
+  });
+}
+
 /**
  * End Main Functions
  * Begin Events
@@ -119,3 +138,6 @@ scrollToSection();
 
 // Set sections as active
 setActiveSection();
+
+// Hide navbar when not scrolling
+hideNavBartWhenNotScrolling();
