@@ -35,6 +35,7 @@ const sections = [];
 function getSections() {
   const sectionsNodeList = document.querySelectorAll("section");
   sections.push(...sectionsNodeList);
+  console.log(sections);
 }
 
 // Scroll to the section when the corresponding link is clicked
@@ -66,7 +67,10 @@ function makeNavBarLinkActive(currentSection) {
   const navLinks = document.querySelectorAll("#navbar__list a");
 
   for (const link of navLinks) {
-    if (link.textContent === currentSection.getAttribute("data-nav")) {
+    if (
+      link.getAttribute("href").substring(1) ===
+      currentSection.getAttribute("id")
+    ) {
       link.classList.add("acitve-link");
     } else {
       link.classList.remove("acitve-link");
