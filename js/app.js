@@ -47,14 +47,29 @@ function respondToSectionClick(event) {
 
 // Add an active state to the section when it is in the viewport
 function makeActive() {
+  let activeSection;
   for (const section of sections) {
     const box = section.getBoundingClientRect();
     //Find a value that works best, but 150 seems to be a good start.
     if (box.top <= 250 && box.bottom >= 700) {
-      section.classList.add("your-active-class");
+      activeSection = section;
+      activeSection.classList.add("your-active-class");
+      makeNavBarLinkActive(activeSection);
     } else {
       //Remove active state from other section and corresponding Nav link
       section.classList.remove("your-active-class");
+    }
+  }
+}
+
+function makeNavBarLinkActive(currentSection) {
+  const navLinks = document.querySelectorAll("#navbar__list a");
+
+  for (const link of navLinks) {
+    if (link.textContent === currentSection.getAttribute("data-nav")) {
+      link.classList.add("acitve-link");
+    } else {
+      link.classList.remove("acitve-link");
     }
   }
 }

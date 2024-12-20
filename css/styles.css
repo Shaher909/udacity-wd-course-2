@@ -125,6 +125,12 @@ section {
   }
 }
 
+.acitve-link {
+  background: #333;
+  color: #fff !important;
+  transition: ease 0.3s all;
+}
+
 .page__header {
   background: #fff;
   position: fixed;
