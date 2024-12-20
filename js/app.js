@@ -35,7 +35,6 @@ const sections = [];
 function getSections() {
   const sectionsNodeList = document.querySelectorAll("section");
   sections.push(...sectionsNodeList);
-  console.log(sections);
 }
 
 // Scroll to the section when the corresponding link is clicked
@@ -63,6 +62,7 @@ function makeActive() {
   }
 }
 
+// a function to highligh the link on which the section is currently active
 function makeNavBarLinkActive(currentSection) {
   const navLinks = document.querySelectorAll("#navbar__list a");
 
